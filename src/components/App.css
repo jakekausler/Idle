@@ -1,0 +1,20 @@
+/*https://paletton.com/#uid=33Z0u0kllllaFw0g0qFqFg0w0aF*/
+
+:root {
+	--color-base: #2A4D6E;
+	--color-accent: #AA7C39;
+	--color-white: #FFFFFF;
+	--color-light: #f9f9fa;
+	--color-dark: #373b40;
+}
+
+body {
+  margin: 0;
+  background: var(--color-light);
+  color: var(--color-dark);
+  font-family: 'Roboto',sans-serif;
+}
+
+#root {
+	padding: 0;
+}
