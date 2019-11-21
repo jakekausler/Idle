@@ -7,22 +7,23 @@ const WorldPanel = ({worldInfo}) => (
 	<div className="WorldPanel">
 		<table>
 		<tbody>
-		{worldInfo.values.map(row => (
-			<tr>
+		{worldInfo.values.map((row, index) => (
+			<tr key={index}>
 				{row.map(cell => (
 					<td
+						key={cell.originX + ',' + cell.originY}
 						style={{
-							background: cell.color
+							background: worldInfo.terrains[cell.terrain],
 						}}
 						id={'(' + cell.originX + ',' + cell.originY + ')'}
 					>
-						<div className="Cell"><span>{
-							(cell.entities.filter(e => e.entityType === "HILL").length > 0 ? "H" : "") +
-							(cell.entities.filter(e => e.entityType === "MOUNTAIN").length > 0 ? "M" : "") +
-							(cell.entities.filter(e => e.entityType === "FOREST").length > 0 ? "F" : "") +
-							(cell.entities.filter(e => e.entityType === "RIVER").length > 0 ? "R" : "") +
-							(cell.entities.filter(e => e.entityType === "SETTLEMENT").length > 0 ? "S" : "")
-						}</span></div>
+						<div className="Cell">
+							{ cell.entities[0].id && <img src={worldInfo.images[cell.entities[0].entityType]} alt={cell.entities[0].entityType}></img> }
+							{ cell.entities[1].id && <img src={worldInfo.images[cell.entities[1].entityType]} alt={cell.entities[1].entityType}></img> }
+							{ cell.entities[2].id && <img src={worldInfo.images[cell.entities[2].entityType]} alt={cell.entities[2].entityType}></img> }
+							{ cell.entities[3].id && <img src={worldInfo.images[cell.entities[3].entityType]} alt={cell.entities[3].entityType}></img> }
+							{ cell.entities[4].id && <img src={worldInfo.images[cell.entities[4].entityType]} alt={cell.entities[4].entityType}></img> }
+						</div>
 					</td>
 				))}
 			</tr>
@@ -41,20 +42,32 @@ WorldPanel.propTypes = {
 		values: PropTypes.arrayOf(
 			PropTypes.arrayOf(
 				PropTypes.shape({
-					color: PropTypes.string.isRequired,
 					originX: PropTypes.number.isRequired,
 					originY: PropTypes.number.isRequired,
 					entities: PropTypes.arrayOf(
 						PropTypes.shape({
 							entityType: PropTypes.string.isRequired,
 							id: PropTypes.string.isRequired,
-							imageURL: PropTypes.string.isRequired
 						})
-					).isRequired
+					).isRequired,
+					terrain: PropTypes.string.isRequired,
 				})
-			).isRequired
-		).isRequired
-	}).isRequired
+			).isRequired,
+		).isRequired,
+		images: PropTypes.shape({
+			HILL: PropTypes.string.isRequired,
+			MOUNTAIN: PropTypes.string.isRequired,
+			FOREST: PropTypes.string.isRequired,
+			RIVER: PropTypes.string.isRequired,
+			SETTLEMENT: PropTypes.string.isRequired,
+		}).isRequired,
+		terrains: PropTypes.shape({
+			GRASS: PropTypes.string.isRequired,
+			OCEAN: PropTypes.string.isRequired,
+			DESERT: PropTypes.string.isRequired,
+			SNOW: PropTypes.string.isRequired,
+		})
+	}).isRequired,
 }
 
 export default WorldPanel

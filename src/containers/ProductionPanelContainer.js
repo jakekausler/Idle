@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { changePage } from '../actions/actions'
 
 import ProductionPanel from '../components/maincontent/mainpanel/productionpanel/ProductionPanel'
 

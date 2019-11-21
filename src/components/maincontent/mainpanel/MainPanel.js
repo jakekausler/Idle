@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import WorldPanelContainer from '../../../containers/WorldPanelContainer'
 import ProductionPanelContainer from '../../../containers/ProductionPanelContainer'
-import ScorePanelContainer from '../../../containers/ScorePanelContainer'
+import TechPanelContainer from '../../../containers/TechPanelContainer'
 
 const MainPanel = ({page}) => (
 	<div
@@ -16,7 +16,7 @@ const MainPanel = ({page}) => (
 	>
 		{page.text === 'World' && <WorldPanelContainer />}
 		{page.text === 'Production' && <ProductionPanelContainer />}
-		{page.text === 'Score' && <ScorePanelContainer />}
+		{page.text === 'Tech' && <TechPanelContainer />}
 	</div>
 )
 
